@@ -20,7 +20,7 @@ const getRandomAngle = (): number => Math.floor(Math.random() * 361);
 const generateInitPosition = () => {
     const angle = getRandomAngle();
     const radians = angle * (Math.PI / 180);
-    const distance = CIRCLE_RADIUS_SMALL * Math.random() - DAMAGE_SIZE_INIT;
+    const distance = CIRCLE_RADIUS_SMALL * Math.random() - (DAMAGE_SIZE_INIT / 2);
     const deltaY = Math.sin(radians);
     const deltaX = Math.cos(radians);
     return {
@@ -35,7 +35,7 @@ const generateInitPosition = () => {
 };
 
 const generateFinalPosition = (deltaX: number, deltaY: number) => {
-    const distance = CIRCLE_RADIUS_SMALL + (Math.random() * ((CIRCLE_RADIUS_BIG - CIRCLE_RADIUS_SMALL) - DAMAGE_SIZE_FINAL))
+    const distance = CIRCLE_RADIUS_SMALL + (Math.random() * ((CIRCLE_RADIUS_BIG - CIRCLE_RADIUS_SMALL) - DAMAGE_SIZE_FINAL / 2))
 
     return {
         top: CIRCLE_RADIUS_BIG - (DAMAGE_SIZE_FINAL / 2) + distance * deltaY,
