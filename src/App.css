@@ -1,0 +1,142 @@
+html, body, #root {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.big-circle {
+    width: 400px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.small-circle {
+    width: 200px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.cube {
+    user-select: none;
+    cursor: url("./assets/aim.svg"), auto;
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    transform-style: preserve-3d;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotateCube 5s infinite linear;
+}
+
+.face {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: rgb(128, 128, 128);
+    border: 1px solid white;
+}
+
+.front {
+    transform: translateZ(40px);
+}
+
+.back {
+    transform: rotateY(180deg) translateZ(40px);
+}
+
+.left {
+    transform: rotateY(-90deg) translateZ(40px);
+}
+
+.right {
+    transform: rotateY(90deg) translateZ(40px);
+}
+
+.top {
+    transform: rotateX(90deg) translateZ(40px);
+}
+
+.bottom {
+    transform: rotateX(-90deg) translateZ(40px);
+}
+
+.damage {
+    position: absolute;
+    transform-origin: center;
+    transition: transform 2s ease, top 2s ease, left 2s ease, opacity 1s ease 3s;
+    font-size: 2rem;
+    z-index: 999;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #747bff;
+    border-radius: 50%;
+    background-color: #ff003b;
+}
+
+.move {
+    animation: move 1s linear forwards;
+}
+
+@keyframes move {
+    0% {
+        top: var(--start-top);
+        left: var(--start-left);
+        opacity: 1;
+    }
+    90% {
+        top: var(--end-top);
+        left: var(--end-left);
+        font-size: 0.75rem;
+        width: 20px;
+        height: 20px;
+        color: white;
+    }
+    100% {
+        font-size: 0.75rem;
+        width: 20px;
+        height: 20px;
+        color: white;
+        opacity: 0;
+    }
+}
+
+@keyframes rotateCube {
+    from {
+        transform: translate(-50%, -50%) rotate3d(3, -1, 6, 0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate3d(3, -1, 6, 360deg);
+    }
+}
