@@ -12,6 +12,7 @@ interface DamageData {
 const ANGLE_START = 185;
 const ANGLE_END = 270;
 const DAMAGE_SIZE_INIT = 50;
+const DAMAGE_SIZE_FINAL = 20;
 const CIRCLE_RADIUS_SMALL = 100;
 const CIRCLE_RADIUS_BIG = 200;
 
@@ -31,18 +32,18 @@ const generateInitPosition = (radius: number, offset: number = 0) => {
         deltaY,
         deltaX,
         coordinates: {
-            top: CIRCLE_RADIUS_BIG + distance * deltaY,
-            left: CIRCLE_RADIUS_BIG + distance * deltaX,
+            top: CIRCLE_RADIUS_BIG - (DAMAGE_SIZE_INIT /2) + distance * deltaY,
+            left: CIRCLE_RADIUS_BIG - (DAMAGE_SIZE_INIT /2) + distance * deltaX,
         }
     };
 };
 
 const generateFinalPosition = (smallCircleRadius: number, bigCircleRadius: number, deltaX: number, deltaY: number) => {
-    const distance = smallCircleRadius + ((bigCircleRadius - smallCircleRadius) / 2)
+    const distance = smallCircleRadius + (Math.random() * ((bigCircleRadius - smallCircleRadius) - DAMAGE_SIZE_FINAL))
 
     return {
-        top: CIRCLE_RADIUS_BIG + distance * deltaY,
-        left: CIRCLE_RADIUS_BIG + distance * deltaX,
+        top: CIRCLE_RADIUS_BIG - (DAMAGE_SIZE_FINAL / 2) + distance * deltaY,
+        left: CIRCLE_RADIUS_BIG - (DAMAGE_SIZE_FINAL / 2) + distance * deltaX,
     };
 };
 export const Aim: React.FC = () => {
